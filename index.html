@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="An Image comics release tracker to see which single issues and trade paperbacks are coming out each week." />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Comics Release Tracker</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/default.min.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Image Comics Release Tracker</h1>
+        <p>
+            I made this because I wanted to be able to see, at a glance, which new Image trades were coming out every week. It only works a month or two out from the present, past or future, depending on what Image has filled out on their site.
+        </p>
+        <p>
+<strong>Directions:</strong> Click the input to pick a release date. Check the box if you only want to see trades. Hover over a cover to see more details. <a href="https://github.com/sethxd/image-release-tracker">Check out the repo on Github</a> if you want to contribute, or just see how it works.
+        </p>
+        <div id="controls">
+
+        Release date:<br /><input id="datepicker" />
+<br />
+        <input class="trades-check" type="checkbox"> Only show trades?
+        </div>
+        <div class="upcoming-comics">
+        </div>
+    </div>
+    <footer>
+        Made by <a target="_blank" href="http://www.seth-dehaan.com">Seth</a>.
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://core.secure.ehc.com/design/js/moment-1.4.0.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-68510434-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+
+</html>
