@@ -23,8 +23,7 @@ $(function(){
     disable: [
       1, 2, 3, 5, 6, 7
     ],
-    format: 'mm/dd/yyyy',
-    editable: false
+    format: 'mm/dd/yyyy'
 });
 
 $('#datepicker').focus(function() {
