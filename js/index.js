@@ -19,16 +19,22 @@ $('.trades-check').on("change", function() {
 })
 
 $(function(){
-  $("#datepicker").datepicker({
-    beforeShowDay: function (drate)
-	    {
-		    var day = drate.getDay();
-        return [day == 3,""];
-	    }
-  });
+  $("#datepicker").pickadate({
+    disable: [
+      1, 2, 3, 5, 6, 7
+    ],
+    format: 'mm/dd/yyyy',
+    editable: false
+});
+
+$('#datepicker').focus(function() {
+  $(this).blur();
+})
+
   $("#datepicker").on("change",function(){
         html = "";
         $(".upcoming-comics").html("<i class='fa fa-spinner fa-spin'></i>&nbsp;&nbsp;&nbsp;Loading...");
+        console.log($(this).val());
         date = $(this).val();
         if (date.charAt(0) === "0") {
           month = date.charAt(1);
