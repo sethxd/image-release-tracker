@@ -50,7 +50,7 @@ $('#datepicker').focus(function() {
         let formatDate = moment(x.date).format("MM/DD/YYYY");
         let lastTwo = x.title.charAt(x.title.length - 2) + x.title.charAt(x.title.length-2+1);
         if (formatDate == date || moment(formatDate).add('days', 1) === date || moment(formatDate).subtract('days', 1) === date) {
-          if (lastTwo == "TP" || lastTwo == "HC") {
+          if (lastTwo == "TP" || lastTwo == "HC" || lastTwo == "Tp" || lastTwo == "Hc") {
           html += '<div style="background: url(' + x.img + ')" class="flex-item collected"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + x.writer + '<br>A: ' + x.artist + '<br>C: ' + x.cover + '</p></div></div>';
           } else {
             html += '<div style="background: url(' + x.img + ')" class="flex-item single"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + x.writer + '<br>A: ' + x.artist + '<br>C: ' + x.cover + '</p></div></div>';
