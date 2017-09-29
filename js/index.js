@@ -1,4 +1,4 @@
-const main = 'https://wrapapi.com/use/sethxd/image/upcoming/0.1.0?wrapAPIKey=6Qyo1c89BOGCaPJyGTTJrIw3JGg3IanB';
+const main = 'https://wrapapi.com/use/sethxd/image/upcoming/1.0.0?wrapAPIKey=VoHD9VlDYG3OWYRWE5IMV57qw9Hs3vmR';
 let month, year, date, html = "";
 
 function alpha(a,b) {
@@ -33,7 +33,6 @@ $('#datepicker').focus(function() {
   $("#datepicker").on("change",function(){
         html = "";
         $(".upcoming-comics").html("<i class='fa fa-spinner fa-spin'></i>&nbsp;&nbsp;&nbsp;Loading...");
-        console.log($(this).val());
         date = $(this).val();
         if (date.charAt(0) === "0") {
           month = date.charAt(1);
@@ -46,14 +45,19 @@ $('#datepicker').focus(function() {
     $.getJSON(url, function(json) {
       let books = json.data.book;
       books = books.sort(alpha);
+      console.log(books);
       books.map(function(x) {
         let formatDate = moment(x.date).format("MM/DD/YYYY");
         let lastTwo = x.title.charAt(x.title.length - 2) + x.title.charAt(x.title.length-2+1);
+        let writer, artist, cover = "";
+        x.writer ? writer = x.writer : writer = "Unknown";
+        x.artist ? writer = x.artist : writer = "Unknown";
+        x.cover ? writer = x.cover : writer = "Unknown";
         if (formatDate == date || moment(formatDate).add('days', 1) === date || moment(formatDate).subtract('days', 1) === date) {
           if (lastTwo == "TP" || lastTwo == "HC" || lastTwo == "Tp" || lastTwo == "Hc") {
-          html += '<div style="background: url(' + x.img + ')" class="flex-item collected"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + x.writer + '<br>A: ' + x.artist + '<br>C: ' + x.cover + '</p></div></div>';
+          html += '<div style="background: url(' + x.img + ')" class="flex-item collected"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
           } else {
-            html += '<div style="background: url(' + x.img + ')" class="flex-item single"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + x.writer + '<br>A: ' + x.artist + '<br>C: ' + x.cover + '</p></div></div>';
+            html += '<div style="background: url(' + x.img + ')" class="flex-item single"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
           }
         }
       })
