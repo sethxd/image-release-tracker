@@ -37,7 +37,7 @@ $('#datepicker').focus(function() {
         if (date.charAt(0) === "0") {
           month = date.charAt(1);
         } else {
-          month = date.slice(0,2);
+          month = date.slice(0,1);
         };
         year = date.slice(6,10);
         let url = main + "&year=" + year + "&month=" + month;
@@ -51,8 +51,8 @@ $('#datepicker').focus(function() {
         let lastTwo = x.title.charAt(x.title.length - 2) + x.title.charAt(x.title.length-2+1);
         let writer, artist, cover = "";
         x.writer ? writer = x.writer : writer = "Unknown";
-        x.artist ? artist = x.artist : artist = "Unknown";
-        x.cover ? cover = x.cover : cover = "Unknown";
+        x.artist ? writer = x.artist : writer = "Unknown";
+        x.cover ? writer = x.cover : writer = "Unknown";
         if (formatDate == date || moment(formatDate).add('days', 1) === date || moment(formatDate).subtract('days', 1) === date) {
           if (lastTwo == "TP" || lastTwo == "HC" || lastTwo == "Tp" || lastTwo == "Hc") {
           html += '<div style="background: url(' + x.img + ')" class="flex-item collected"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
