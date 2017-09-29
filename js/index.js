@@ -49,12 +49,13 @@ $('#datepicker').focus(function() {
       books.map(function(x) {
         let formatDate = moment(x.date).format("MM/DD/YYYY");
         let lastTwo = x.title.charAt(x.title.length - 2) + x.title.charAt(x.title.length-2+1);
+        lastTwo = lastTwo.toLowerCase();
         let writer, artist, cover = "";
         x.writer ? writer = x.writer : writer = "Unknown";
         x.artist ? artist = x.artist : artist = "Unknown";
         x.cover ? cover = x.cover : cover = "Unknown";
         if (formatDate == date || moment(formatDate).add('days', 1) === date || moment(formatDate).subtract('days', 1) === date) {
-          if (lastTwo == "TP" || lastTwo == "HC" || lastTwo == "Tp" || lastTwo == "Hc") {
+          if (lastTwo == "tp" || lastTwo == "hc") {
           html += '<div style="background: url(' + x.img + ')" class="flex-item collected"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
           } else {
             html += '<div style="background: url(' + x.img + ')" class="flex-item single"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
