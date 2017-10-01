@@ -28,7 +28,7 @@ h1 {
   padding: 20px;
   color:white;
   border-radius:20px;
-  width:50%;
+  max-width:600px;
   margin:0 auto;
 }
 
@@ -103,4 +103,11 @@ h1 {
 
 .hidden {
   display:none;
+}
+
+@media (max-width:767px) {
+
+  .caption {opacity:1;}
+  .caption:hover {height:100%;}
+
 }
