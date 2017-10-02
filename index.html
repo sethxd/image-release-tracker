@@ -25,7 +25,8 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="master">
+        <div class="top">
         <h1>Image Comics Release Tracker</h1>
         <p>
             I made this because I wanted to be able to see, at a glance, which new Image trades were coming out every week. It only works a month or two out from the present, past or future, depending on what Image has filled out on their site.
@@ -39,9 +40,13 @@
 <br />
         <input class="trades-check" type="checkbox"> Only show trades?
         </div>
-        <div class="upcoming-comics">
+        </div>
+        <div class="row">
+            <div class="writer-list col-md-2"></div>
+            <div class="upcoming-comics col-md-10"></div>
         </div>
     </div>
+    <div id="loading"><i class="fa fa-spinner fa-spin"></i>&nbsp;&nbsp;&nbsp;Loading...</div>
     <footer>
         Made by <a target="_blank" href="http://www.seth-dehaan.com">Seth</a>.
     </footer>
