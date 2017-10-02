@@ -1,5 +1,7 @@
 const main = 'https://wrapapi.com/use/sethxd/image/upcoming/1.0.0?wrapAPIKey=VoHD9VlDYG3OWYRWE5IMV57qw9Hs3vmR';
 let month, year, date, html = "";
+let writerList = [];
+let writerhtml = "<ul>";
 
 function alpha(a,b) {
   if (a.title < b.title)
@@ -8,6 +10,17 @@ function alpha(a,b) {
     return 1;
   else
     return 0;
+}
+
+function writerSort(a,b) {
+  var splitA = a.split(" ");
+  var splitB = b.split(" ");
+  var lastA = splitA[splitA.length - 1];
+  var lastB = splitB[splitB.length - 1];
+
+  if (lastA < lastB) return -1;
+  if (lastA > lastB) return 1;
+  return 0;
 }
 
 $('.trades-check').on("change", function() {
@@ -32,7 +45,11 @@ $('#datepicker').focus(function() {
 
   $("#datepicker").on("change",function(){
         html = "";
-        $(".upcoming-comics").html("<i class='fa fa-spinner fa-spin'></i>&nbsp;&nbsp;&nbsp;Loading...");
+        writerList = [];
+        writerhtml = "<ul>";
+        $(".writer-list").html("");
+        $(".upcoming-comics").html("");
+        $('#loading').css('display', 'inline');
         date = $(this).val();
         if (date.charAt(0) === "0") {
           month = date.charAt(1);
@@ -55,13 +72,24 @@ $('#datepicker').focus(function() {
         x.artist ? artist = x.artist : artist = "Unknown";
         x.cover ? cover = x.cover : cover = "Unknown";
         if (formatDate == date || moment(formatDate).add('days', 1) === date || moment(formatDate).subtract('days', 1) === date) {
+          writerList.push(writer);
+          let fullName = writer.split(" ");
           if (lastTwo == "tp" || lastTwo == "hc") {
-          html += '<div style="background: url(' + x.img + ')" class="flex-item collected"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
+          html += '<div style="background: url(' + x.img + ')" class="' + fullName[fullName.length-1] + ' flex-item collected"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
           } else {
-            html += '<div style="background: url(' + x.img + ')" class="flex-item single"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
+            html += '<div style="background: url(' + x.img + ')" class="' + fullName[fullName.length-1] + ' flex-item single"><div class="caption"><p><span class="title"><a target="blank" href="https://imagecomics.com' + x.url + '"><strong>' + x.title + '</strong></a></span><br>' + x.date + '<br>W: ' + writer + '<br>A: ' + artist + '<br>C: ' + cover + '</p></div></div>';
           }
         }
       })
+      writerList = writerList.sort(writerSort);
+      writerList = writerList.filter( (el, i, arr) => arr.indexOf(el) === i);
+      writerList.forEach(function(x) {
+        let name = x.split(" ");
+        writerhtml += '<li class="wlink" data-name="' + name[name.length-1] + '">' + x + '</li>';
+      });
+      writerhtml += '</ul>';
+      $(".writer-list").html(writerhtml);
+      $('#loading').css('display', 'none');
       if (html !== "") {
         $(".upcoming-comics").html(html);
       } else {
@@ -70,6 +98,23 @@ $('#datepicker').focus(function() {
       if ($('.trades-check').is(':checked')) {
         $('.single').addClass('hidden');
       }
+
+      $(document).ready(function() {
+        $(".wlink").click(function() {
+          if ($(this).hasClass("active")) {
+            $('.faded').removeClass("faded");
+            $(this).removeClass("active");
+          } else {
+            $('.faded').removeClass("faded");
+            $('.active').removeClass("active");
+            let filter = $(this).attr("data-name");
+            let fullFilter = ".flex-item:not(." + filter + ")";
+            $(fullFilter).addClass("faded");
+            $(this).addClass("active");
+          }
+        })
+      })
+
     })
     });
 });
