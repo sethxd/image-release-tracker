@@ -1,3 +1,6 @@
+**Update: 12/13/18**
+Image changed the structure of their upcoming releases content, and the API is currently broken. If I have time I'll dig into it and see if I can rebuild it, but I don't know if that will happen or not. It was fun while it lasted!
+
 # Image Comics Release Tracker
 
 ![Screenshot of Image comics release tracker](comics-screen.jpg)
